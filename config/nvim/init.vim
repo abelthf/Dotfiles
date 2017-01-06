@@ -12,7 +12,7 @@
 if &compatible
   set nocompatible
 endif
-" Auto installing Dein
+" Auto installing Dein {{{
 let iCanHazDein=1
 
 if (!isdirectory(expand("$HOME/.config/nvim/repos/github.com/Shougo/dein.vim")))
@@ -37,6 +37,39 @@ call dein#add('Shougo/dein.vim')
 
 call dein#add('mhartington/oceanic-next')
 
+" deoplete stuff
+call dein#add('Shougo/deoplete.nvim')
+call dein#add('Shougo/deol.nvim')
+call dein#add('landaire/deoplete-swift', {'on_ft': 'swift'})
+call dein#add('keith/swift.vim', {'on_ft': 'swift'})
+call dein#add('ternjs/tern_for_vim', {'build': 'npm install'})
+call dein#add('carlitux/deoplete-ternjs', {'on_ft': 'javascript'})
+call dein#add('artur-shaik/vim-javacomplete2', {'on_ft': 'java'})
+call dein#add('Shougo/neco-vim', {'on_ft': 'vim'})
+call dein#add('Shougo/neoinclude.vim')
+call dein#add('ujihisa/neco-look')
+call dein#add('davidhalter/jedi-vim', {'on_ft': 'python'})
+call dein#add('zchee/deoplete-jedi', {'on_ft': 'python'})
+call dein#add('zchee/nvim-go', {'build': 'gb build'})
+call dein#add('zchee/deoplete-go', {'build': 'make'})
+call dein#add('Konfekt/FastFold')
+call dein#add('Shougo/neosnippet.vim')
+call dein#add('Shougo/neosnippet-snippets')
+call dein#add('Shougo/echodoc.vim')
+call dein#add('honza/vim-snippets')
+call dein#add('mhinz/vim-sayonara')
+call dein#add('mattn/webapi-vim')
+call dein#add('mattn/gist-vim')
+call dein#add('terryma/vim-multiple-cursors')
+call dein#add('vim-scripts/SyntaxRange')
+call dein#add('tyru/open-browser.vim')
+call dein#add('junegunn/vim-easy-align')
+call dein#add('MartinLafreniere/vim-PairTools')
+call dein#add('Shougo/vimfiler.vim')
+call dein#add('Shougo/unite.vim')
+call dein#add('mhartington/dotfiles')
+
+
 " }}}
 
 " Auto install the Plugin {{{
@@ -55,11 +88,46 @@ if dein#check_install()
   let pluginsExist=1
 endif
 
-" }}}
 call dein#end()
-
 filetype plugin indent on
-syntax enable
+" }}}
+" END DEIN }}}
+
+" VIM SETUP -----------------------------------------------------------------{{{
+
+" System settings {{{
+set noswapfile
+" }}}
+
+"<Leader> & <LocalLeader> mapping {{{
+let mapleader=','
+let maplocalleader= ' '
+" }}}
+
+
+" Automatic reloading of .vimrc
+autocmd! bufwritepost .vimrc source %
+" }}}
+
+" Toggle line numbers {{{
+nnoremap <silent><Leader>l :call ToggleRelativeAbsoluteNumber()<CR>
+function! ToggleRelativeAbsoluteNumber()
+    if !&number && !&relativenumber
+        set number
+        set norelativenumber
+    elseif &number && !&relativenumber
+        set nonumber
+        set relativenumber
+    elseif !&number && &relativenumber
+        set number
+        set relativenumber
+    elseif &number && &relativenumber
+        set nonumber
+        set norelativenumber
+    endif
+endfunction
+" }}}
+
 
 " Fold, gets it's own section ----------------------------------------------{{{
 
