@@ -1,3 +1,6 @@
 [user]
 	name = Fredy Abel Huanca Torres
 	mail = abel.huanca@upeu.pe
+	signingkey = F6DBD113
+[commit]
+	gpgsign = true
